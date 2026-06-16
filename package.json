@@ -1,0 +1,122 @@
+{
+  "name": "emoji-remover",
+  "displayName": "Emoji Remover",
+  "description": "Remove emojis from your code — keep it clean and professional",
+  "version": "1.0.0",
+  "publisher": "SabinAdhikari",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SabinAdhikarii/VS-extension-for-emoji-remover.git"
+  },
+  "homepage": "https://github.com/SabinAdhikarii/VS-extension-for-emoji-remover",
+  "bugs": {
+    "url": "https://github.com/SabinAdhikarii/VS-extension-for-emoji-remover/issues"
+  },
+  "categories": [
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "emoji",
+    "emoji remover",
+    "ai generated code",
+    "code cleanup",
+    "code quality",
+    "formatter",
+    "developer tools",
+    "comment cleanup"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "emojiRemover.removeFromFile",
+        "title": "Remove Emojis from File",
+        "category": "Emoji Remover"
+      },
+      {
+        "command": "emojiRemover.removeFromSelection",
+        "title": "Remove Emojis from Selection",
+        "category": "Emoji Remover"
+      },
+      {
+        "command": "emojiRemover.removeFromWorkspace",
+        "title": "Remove Emojis from Entire Workspace",
+        "category": "Emoji Remover"
+      },
+      {
+        "command": "emojiRemover.toggleAutoRemove",
+        "title": "Toggle Auto-Remove on Save",
+        "category": "Emoji Remover"
+      }
+    ],
+    "configuration": {
+      "title": "Emoji Remover",
+      "properties": {
+        "emojiRemover.autoRemoveOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically remove emojis when a file is saved"
+        },
+        "emojiRemover.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show emoji count in the status bar"
+        },
+        "emojiRemover.preserveInStrings": {
+          "type": "boolean",
+          "default": false,
+          "description": "Skip emoji removal inside string literals"
+        },
+        "emojiRemover.excludedLanguages": {
+          "type": "array",
+          "default": [
+            "markdown",
+            "plaintext"
+          ],
+          "description": "Languages to skip during auto-remove on save"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "emojiRemover.removeFromFile",
+          "group": "1_modification",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "emojiRemover.removeFromSelection",
+          "group": "1_modification",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "emojiRemover.removeFromFile",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.3.0"
+  }
+}
