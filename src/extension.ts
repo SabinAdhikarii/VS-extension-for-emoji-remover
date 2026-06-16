@@ -135,9 +135,9 @@ export function activate(context: vscode.ExtensionContext) {
 
   // --- Auto-remove on save ---
   context.subscriptions.push(
-    vscode.workspace.onWillSaveTextDocument(async event => {
+    vscode.workspace.onWillSaveTextDocument(event => {
       const config = vscode.workspace.getConfiguration('emojiRemover');
-      if (!config.get<boolean>('autoRemoveOnSave', false)) return;
+      if (!config.get<boolean>('autoRemoveOnSave', true)) return;
 
       const excluded = config.get<string[]>('excludedLanguages', ['markdown', 'plaintext']);
       if (excluded.includes(event.document.languageId)) return;
